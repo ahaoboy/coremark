@@ -3,6 +3,9 @@ name = "coremark"
 version = "1.0.0"
 edition = "2024"
 description = "Rust port of the EEMBC CoreMark 1.0 benchmark, usable as a library or a CLI"
+license = "MIT"
+repository = "https://github.com/ahaoboy/coremark"
+authors = ["ahaoboy"]
 
 [dependencies]
 clap = { version = "4", features = ["derive"], optional = true }
