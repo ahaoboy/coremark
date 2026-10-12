@@ -19,11 +19,14 @@ jobs:
             os: macos-latest
           - target: aarch64-apple-darwin
             os: macos-latest
+            run: true
           - target: x86_64-pc-windows-msvc
             os: windows-latest
             RUSTFLAGS: -C target-feature=+crt-static
+            run: true
           - target: x86_64-pc-windows-gnu
             os: windows-latest
+            run: true
           # - target: arm64ec-pc-windows-msvc
           #   os: windows-latest
           - target: aarch64-unknown-linux-musl
@@ -32,8 +35,10 @@ jobs:
             os: ubuntu-latest
           - target: x86_64-unknown-linux-musl
             os: ubuntu-latest
+            run: true
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
+            run: true
           - target: aarch64-linux-android
             os: ubuntu-latest
     runs-on: ${{ matrix.os }}
@@ -53,6 +58,6 @@ jobs:
         run:
           cargo install --path . --features cli
       - name: run
-        if: contains(fromJSON('["x86_64-unknown-linux-musl", "x86_64-pc-windows-msvc", "aarch64-apple-darwin"]'), matrix.target)
+        if: matrix.run
         run:
           coremark
