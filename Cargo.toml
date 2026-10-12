@@ -1,0 +1,17 @@
+[package]
+name = "coremark"
+version = "1.0.0"
+edition = "2024"
+description = "Rust port of the EEMBC CoreMark 1.0 benchmark, usable as a library or a CLI"
+
+[dependencies]
+clap = { version = "4", features = ["derive"], optional = true }
+
+[features]
+default = ["cli"]
+cli = ["dep:clap"]
+
+[[bin]]
+name = "coremark"
+path = "src/main.rs"
+required-features = ["cli"]
