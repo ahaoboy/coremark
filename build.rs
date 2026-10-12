@@ -1,6 +1,6 @@
-//! Build script: captures the Rust compiler version and build profile so the
-//! benchmark report can print them, mirroring the C `COMPILER_VERSION` and
-//! `COMPILER_FLAGS` strings.
+//! Build script: captures the Rust compiler version, build profile and target
+//! triple so the benchmark report can print them, mirroring the C
+//! `COMPILER_VERSION` and `COMPILER_FLAGS` strings.
 
 use std::process::Command;
 
@@ -17,7 +17,9 @@ fn main() {
         .unwrap_or_else(|| "rustc (unknown)".to_string());
 
     let profile = std::env::var("PROFILE").unwrap_or_else(|_| "unknown".to_string());
+    let target = std::env::var("TARGET").unwrap_or_else(|_| "unknown".to_string());
 
     println!("cargo:rustc-env=COREMARK_RUSTC_VERSION={version}");
     println!("cargo:rustc-env=COREMARK_PROFILE={profile}");
+    println!("cargo:rustc-env=COREMARK_TARGET={target}");
 }

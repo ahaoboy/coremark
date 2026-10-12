@@ -25,5 +25,12 @@ pub use bench::{Config, Results, run};
 
 /// Rust compiler version, captured at build time.
 pub const COMPILER_VERSION: &str = env!("COREMARK_RUSTC_VERSION");
-/// Build profile, captured at build time.
-pub const COMPILER_FLAGS: &str = concat!("profile=", env!("COREMARK_PROFILE"));
+/// Build profile and compilation target, captured at build time.
+pub const COMPILER_FLAGS: &str = concat!(
+    "profile=",
+    env!("COREMARK_PROFILE"),
+    " target=",
+    env!("COREMARK_TARGET")
+);
+/// Compilation target triple, captured at build time.
+pub const TARGET: &str = env!("COREMARK_TARGET");
